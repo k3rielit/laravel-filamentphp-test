@@ -52,7 +52,9 @@ class StatusResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                Tables\Filters\Filter::make('is_active')->label('Actives Only')->query(
+                    fn (Builder $query): Builder => $query->where('is_active', true)
+                ),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
