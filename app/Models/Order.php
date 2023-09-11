@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Database\Factories\OrderFactory;
 
 class Order extends Model {
@@ -27,5 +28,10 @@ class Order extends Model {
         'product_name' => 'unspecified',
         'quantity' => 0,
     ];
+
+
+    public function status(): BelongsTo {
+        return $this->belongsTo(Status::class, 'status_id', 'id');
+    }
 
 }
